@@ -16,7 +16,6 @@ public class SerializationUtils
 
             foreach (var type in assembly.GetTypes())
             {
-                Console.WriteLine(type.Name);
                 if (typeof(ITraceResultSerializer).IsAssignableFrom(type) && !type.IsInterface 
                     && Activator.CreateInstance(type) is ITraceResultSerializer serializer)
                 {
