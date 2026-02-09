@@ -44,7 +44,7 @@ public class MethodTracer : ITracer
         StackFrame caller = st.GetFrame(1)!;
 
         MethodBase method = caller.GetMethod()!;
-        MethodTraceResult methodTraceResult = new MethodTraceResult(method.Name, method.DeclaringType!.FullName!);
+        MethodTraceResult methodTraceResult = new MethodTraceResult(method.DeclaringType!.FullName!, method.Name);
 
         Stack<StackEntry> stack = GetCurrentThreadStack();
         if (stack.Count == 0)
@@ -77,7 +77,7 @@ public class MethodTracer : ITracer
         {
             if (stack.Count > 0)
             {   
-                throw new Exception($"Tracing of thread {threadId} is not completed");
+                throw new InvalidOperationException($"Tracing of thread {threadId} is not completed");
             }
         }
 
