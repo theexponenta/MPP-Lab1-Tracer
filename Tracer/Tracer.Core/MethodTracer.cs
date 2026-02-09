@@ -73,11 +73,11 @@ public class MethodTracer : ITracer
 
     public TraceResult GetTraceResult()
     {
-        foreach (var (threadId, stack) in _stacks)
+        foreach (var stack in _stacks.Values)
         {
             if (stack.Count > 0)
             {   
-                throw new InvalidOperationException($"Tracing of thread {threadId} is not completed");
+                throw new InvalidOperationException($"Unbalanced stack");
             }
         }
 
