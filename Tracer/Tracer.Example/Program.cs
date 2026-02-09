@@ -68,6 +68,15 @@ class Program
         Foo foo = new Foo(tracer);
         foo.MyMethod();
 
+        Thread thread1 = new Thread(foo.MyMethod);
+        Thread thread2 = new Thread(foo.MyMethod);
+        tracer.StartTrace();
+        thread1.Start();
+        thread2.Start();
+        thread1.Join();
+        thread2.Join();
+        tracer.StopTrace();
+
         TraceResult result = tracer.GetTraceResult();
 
         string serializersPath = GetSerializersPath();

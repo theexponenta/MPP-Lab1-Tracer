@@ -39,7 +39,7 @@ public class MethodTracer : ITracer
     }
 
     public void StartTrace()
-    {
+    {   
         StackTrace st = new StackTrace(false);
         StackFrame caller = st.GetFrame(1)!;
 
